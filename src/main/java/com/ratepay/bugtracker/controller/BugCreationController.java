@@ -17,14 +17,14 @@ public class BugCreationController {
 	@Autowired
 	private BugCreationRepository bugCreationRepository;
 	
-	@PostMapping("/createIncident")
-	@Timed(value = "createIncident.time", description = "Time taken to create Incident")
-	public BugDetails createIncident(@RequestBody BugDetails customer) {
+	@PostMapping("/createbug")
+	@Timed(value = "createbug.time", description = "Time taken to create Bug")
+	public BugDetails createIncident(@RequestBody BugDetails bugdetails) {
 		
-		BugDetails incidentcreated=bugCreationRepository.save(customer);
-		System.out.println("bugCreated"+incidentcreated.getAssignee());
+		BugDetails bugCreated=bugCreationRepository.save(bugdetails);
+		System.out.println("bugCreated"+bugCreated.getAssignee());
 		
-		return incidentcreated;
+		return bugCreated;
 
 
 	}
