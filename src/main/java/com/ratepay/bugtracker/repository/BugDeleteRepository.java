@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ratepay.bugtracker.model.BugDetails;
 
 @Repository
-public interface BugDeleteRepository extends CrudRepository<BugDetails, Integer>   {
+public interface BugDeleteRepository extends CrudRepository<BugDetails, Long>   {
 
 }

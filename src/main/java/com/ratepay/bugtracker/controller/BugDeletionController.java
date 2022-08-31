@@ -15,9 +15,9 @@ public class BugDeletionController {
 	@Autowired
 	private BugDeleteRepository bugDeleteRepository;
 	
-	@PostMapping("/deletebug")
+	@PostMapping("/deletebug/{bugid}")
 	@Timed(value = "deletebug.time", description = "Time taken to delete Bug")
-	public void deleteBugDetails(@PathVariable int bugid) {
+	public void deleteBugDetails(@PathVariable Long bugid) {
 		
 		bugDeleteRepository.deleteById(bugid);
 		System.out.println("bugDeleted");

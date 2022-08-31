@@ -25,8 +25,6 @@ public class BugCreationController {
 		System.out.println("bugCreated"+bugCreated.getAssignee());
 		
 		return bugCreated;
-
-
 	}
 
 

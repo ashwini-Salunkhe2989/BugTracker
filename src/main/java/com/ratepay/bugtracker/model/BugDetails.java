@@ -18,7 +18,7 @@ public class BugDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "bug_id")
-	private int bugId;
+	private Long bugId;
 	
 	private String title;
 	
@@ -41,10 +41,10 @@ public class BugDetails {
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Timestamp updateddate;
 	
-	public int getBugId() {
+	public Long getBugId() {
 		return bugId;
 	}
-	public void setBugId(int bugId) {
+	public void setBugId(Long bugId) {
 		this.bugId = bugId;
 	}
 	public String getTitle() {
