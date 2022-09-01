@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "204accea-c813-4fb9-8a44-31e4732aad63",
+		"name": "BugTracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2280450"
+	},
+	"item": [
+		{
+			"name": "CreateBug",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bugTitle\":\"JIRA3\",\n    \"status\": 1,\n    \"assigneeName\": \"pranav\",\n    \"createdBy\": \"ASHWINI\",\n    \"createDate\":\"2022-08-28\"\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/createbug",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"createbug"
+					]
+				},
+				"description": "Bug Creation"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBugById",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/deletebug/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"deletebug",
+						"1"
+					]
+				},
+				"description": "delete bug"
+			},
+			"response": []
+		},
+		{
+			"name": "FIndBugById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/bugdetails/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"bugdetails",
+						"1"
+					]
+				},
+				"description": "Get Bug Details By Id"
+			},
+			"response": []
+		},
+		{
+			"name": "FIndBugDetailsByAssignee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/bugdetailsbyassignee/pranav",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"bugdetailsbyassignee",
+						"pranav"
+					]
+				},
+				"description": "Bug details by assignee"
+			},
+			"response": []
+		},
+		{
+			"name": "updateBugdetails",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bugId\": 1,\n    \"bugTitle\": \"jira4\",\n    \"status\": 0,\n    \"assigneeName\": \"pranav\",\n    \"createdBy\": \"ASHWINI\",\n    \"createDate\": \"2022-08-28T00:00:00.000+00:00\",\n    \"updatedBy\": \"Vivaan\",\n    \"updateddate\": \"2022-06-28T00:00:00.000+00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/updatebug",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"updatebug"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
