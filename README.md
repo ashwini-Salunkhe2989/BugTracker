@@ -10,5 +10,5 @@ Mvn clean install
 docker image will be built
 you can see this image by- docker images
  push docker image to dockerhub-optional
-To run project through image- docker run -p 8082:8082 freenow/carmanagement
+To run project through image- docker run -p 8082:8082 ratepay/bugtracker
 You can use postman collection to test APi's
