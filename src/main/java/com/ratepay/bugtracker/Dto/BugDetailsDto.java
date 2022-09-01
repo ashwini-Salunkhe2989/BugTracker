@@ -14,14 +14,11 @@ public class BugDetailsDto {
 	
 	private int status;
 	private String assigneeName;
-	
-	
+		
 	private String createdBy;
 	
 	private Timestamp createDate;
-	
-	
-	
+		
 	private String updatedBy;
 	
 	private Timestamp updateddate;

@@ -1,26 +1,34 @@
 package com.ratepay.bugtracker.controller;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ratepay.bugtracker.model.BugDetails;
-import com.ratepay.bugtracker.repository.BugUpdateRepository;
+import com.ratepay.bugtracker.Dto.BugDetailsDto;
+import com.ratepay.bugtracker.service.BugUpdationService;
 
 import io.micrometer.core.annotation.Timed;
 
 @RestController
 public class BugUpdateController {
 	@Autowired
-	private BugUpdateRepository bugUpdateRepository;
+	private BugUpdationService bugUpdationService;
 	
 	@PostMapping("/updatebug")
 	@Timed(value = "updatebug.time", description = "Time taken to update bug")
-	public BugDetails updateBugDetails(@RequestBody BugDetails bugDetails) {
+	public BugDetailsDto updateBugDetails(@RequestBody BugDetailsDto bugDetails) {
 		
-		BugDetails updatedBug= bugUpdateRepository.save(bugDetails);
-		System.out.println("bugUpdated"+updatedBug.getBugId());
+		BugDetailsDto updatedBug = null;
+		try {
+			updatedBug = bugUpdationService.save(bugDetails);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return updatedBug;
 
