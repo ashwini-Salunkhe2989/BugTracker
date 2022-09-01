@@ -2,6 +2,8 @@ package com.ratepay.bugtracker.controller;
 
 import java.text.ParseException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +18,7 @@ import io.micrometer.core.annotation.Timed;
 public class BugUpdateController {
 	@Autowired
 	private BugUpdationService bugUpdationService;
+	Logger logger = LoggerFactory.getLogger(BugUpdateController.class);
 	
 	@PostMapping("/updatebug")
 	@Timed(value = "updatebug.time", description = "Time taken to update bug")
@@ -25,8 +28,8 @@ public class BugUpdateController {
 		try {
 			updatedBug = bugUpdationService.save(bugDetails);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage());
+			
 		}
 		
 		

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ratepay.bugtracker.exception.CustomExceptionMessageGenerator;
 import com.ratepay.bugtracker.model.BugDetails;
 import com.ratepay.bugtracker.repository.BugDetailsRepository;
 
@@ -25,20 +26,30 @@ public class BugDetailsController {
 	public Optional<BugDetails> getBugDetails(@PathVariable Long bugid) {
 		
 		Optional<BugDetails> bugDetails=bugDetailsRepository.findById(bugid);
-		System.out.println("bugdetails"+bugDetails.toString());
+		if(bugDetails.isPresent()) {
+			return bugDetails;
+		}
+		else {
+			throw new CustomExceptionMessageGenerator("Bug Id invalid please check ID");
+		}
 		
-		return bugDetails;
 
 	}
 
 	@GetMapping("/bugdetailsbyassignee/{assignee}")
 	@Timed(value = "bugdetailsbyassignee.time", description = "Time taken to give bug by assignee")
-	public List<BugDetails> getBugDetailsByAssignee(@PathVariable String assignee) {
+	public Optional<List<BugDetails> >getBugDetailsByAssignee(@PathVariable String assignee) {
 		
 		List<BugDetails> bugDetails = bugDetailsRepository.findByAssignee(assignee);
-		System.out.println("bugdetails"+bugDetails.toString());
 		
-		return bugDetails;
+		if(!bugDetails.isEmpty()) {
+			return Optional.of(bugDetails);
+		}
+			
+		else {
+			throw new CustomExceptionMessageGenerator("No Bug present for this id");
+			
+		}
 
 
 	}

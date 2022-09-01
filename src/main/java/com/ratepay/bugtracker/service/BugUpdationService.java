@@ -27,12 +27,14 @@ public class BugUpdationService {
 		BugDetailsDto detailsDto;
 		Optional<BugDetails> oldbugdetail= bugUpdateRepository.findById(bugdetails.getBugId());
 		
-		if(oldbugdetail.isPresent() && oldbugdetail.get().getAssignee().equalsIgnoreCase(bugdetails.getUpdatedBy())) {
+		if(oldbugdetail.isPresent() && 
+				(oldbugdetail.get().getAssignee().equalsIgnoreCase(bugdetails.getUpdatedBy())|| 
+						oldbugdetail.get().getCreatedBy().equalsIgnoreCase(bugdetails.getUpdatedBy()))) {
 			BugDetails details=	bugUpdateRepository.save(bug);
 			 detailsDto=converttoDto(details);
 		}
 		else {
-			throw new CustomExceptionMessageGenerator("Bug Cant be updated please check details");
+			throw new CustomExceptionMessageGenerator("Bug Cant be updated beause you are not creater or Assigner please check!!");
 		}
 		
 		return detailsDto;
@@ -46,6 +48,10 @@ public class BugUpdationService {
 	}
 	
 	private BugDetailsDto converttoDto(BugDetails bugdetails) throws ParseException {
+		//TypeMap<BugDetails, BugDetailsDto> propertyMapper = this.modelMapper.createTypeMap(BugDetails.class, BugDetailsDto.class);
+	    
+	    //propertyMapper.addMapping(BugDetails::getAssignee, BugDetailsDto::setAssigneeName);
+
 		BugDetailsDto post = modelMapper.map(bugdetails, BugDetailsDto.class);
 	      
 	    return post;

@@ -2,6 +2,8 @@ package com.ratepay.bugtracker.controller;
 
 import java.text.ParseException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,11 +15,18 @@ import com.ratepay.bugtracker.service.BugCreationService;
 import io.micrometer.core.annotation.Timed;
 
 @RestController
+/**
+ * 
+ * @author ashwini
+ * This class contains request mapping to create bug with minimum details
+ *
+ */
 public class BugCreationController {
 	
 	
 	@Autowired
 	private BugCreationService bugCreationService;
+	Logger logger = LoggerFactory.getLogger(BugCreationController.class);
 	
 	@PostMapping("/createbug")
 	@Timed(value = "createbug.time", description = "Time taken to create Bug")
@@ -27,11 +36,9 @@ public class BugCreationController {
 		try {
 			bugDto = bugCreationService.save(bugdetails);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
-		System.out.println("bugCreated"+bugDto.getAssigneeName());
-		
+				
 		return bugDto;
 	}
 

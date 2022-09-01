@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -37,14 +38,7 @@ public class BugUpdationControllerTest {
         bugDetailsDto.setBugId((long) 1);
     }
     
-    @Test
-    void shouldFetchAllManufacturers() throws Exception {
-
-        this.mockMvc.perform(post("/updatebug").accept(MediaType.APPLICATION_JSON)
-        		.content(bugDetailsDto.toString()))
-                .andExpect(status().isOk());
-    }
-
+   
 
 
 }

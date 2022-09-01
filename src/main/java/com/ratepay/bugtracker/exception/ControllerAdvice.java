@@ -10,11 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ControllerAdvice {
 
-	
-
-	
-
-	
+		
 	@ExceptionHandler(value = CustomExceptionMessageGenerator.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public @ResponseBody ErrorResponse handleCustomExceptionMessage(CustomExceptionMessageGenerator ex) {
