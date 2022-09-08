@@ -37,11 +37,8 @@ public class BugCreationService {
 	}
 	
 	private BugDetailsDto converttoDto(BugDetails bugdetails) throws ParseException {
-	    TypeMap<BugDetails, BugDetailsDto> propertyMapper = this.modelMapper.createTypeMap(BugDetails.class, BugDetailsDto.class);
-	    
-	    propertyMapper.addMapping(BugDetails::getAssignee, BugDetailsDto::setAssigneeName);
-
-		BugDetailsDto post = modelMapper.map(bugdetails, BugDetailsDto.class);
+	   
+	BugDetailsDto post = modelMapper.map(bugdetails, BugDetailsDto.class);
 	      
 	    return post;
 	}
